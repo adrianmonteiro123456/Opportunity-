@@ -547,3 +547,69 @@ document.querySelectorAll('.sidebar-nav a').forEach(link => {
         }
     });
 });
+// Notificações simuladas
+setTimeout(() => {
+    const notification = document.createElement('div');
+    notification.className = 'notification-popup';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-bell"></i>
+            <p>Nova oportunidade disponível para você!</p>
+        </div>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 5000);
+}, 10000); // Mostra após 10 segundos
+
+// CSS para notificações
+const notificationStyle = document.createElement('style');
+notificationStyle.textContent = `
+.notification-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid var(--primary-color);
+}
+
+.notification-popup.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification-content i {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 14px;
+}
+`;
+document.head.appendChild(notificationStyle);
