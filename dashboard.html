@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Opportunity+</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1>Opportunity<span>+</span></h1>
+                </div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 id="userName">Usuário</h3>
+                <p id="userPoints">0 pontos</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-home"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#opportunities">
+                            <i class="fas fa-briefcase"></i> Oportunidades
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#courses">
+                            <i class="fas fa-graduation-cap"></i> Cursos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#events">
+                            <i class="fas fa-calendar-alt"></i> Eventos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#favorites">
+                            <i class="fas fa-heart"></i> Favoritos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#resume">
+                            <i class="fas fa-file-alt"></i> Meu Currículo
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#quiz">
+                            <i class="fas fa-question-circle"></i> Quiz de Carreira
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <h2>Dashboard</h2>
+                    <p id="welcomeMessage">Bem-vindo de volta!</p>
+                </div>
+                <div class="header-right">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <div class="avatar small">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-wrapper">
+                <!-- Seção de Boas-vindas -->
+                <section class="welcome-section">
+                    <div class="welcome-card">
+                        <h3 id="personalizedWelcome">Olá, [Nome]!</h3>
+                        <p>Confira as oportunidades que separamos para você com base no seu perfil.</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Seu progresso</span>
+                                <span id="progressPercentage">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-actions">
+                        <div class="action-card">
+                            <i class="fas fa-search"></i>
+                            <h4>Buscar Vagas</h4>
+                        </div>
+                        <div class="action-card">
+                            <i class="fas fa-bookmark"></i>
+                            <h4>Favoritos</h4>
+                        </div>
+                        <div class="action-card">
+                            <i class="fas fa-file-alt"></i>
+                            <h4>Currículo</h4>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Seção de Oportunidades -->
+                <section class="opportunities-section" id="opportunities">
+                    <div class="section-header">
+                        <h3>Oportunidades para você</h3>
+                        <div class="filters">
+                            <select id="opportunityFilter">
+                                <option value="all">Todas as áreas</option>
+                                <option value="tecnologia">Tecnologia</option>
+                                <option value="saude">Saúde</option>
+                                <option value="educacao">Educação</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="opportunities-grid" id="opportunitiesGrid">
+                        <!-- As oportunidades serão carregadas via JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Seção de Cursos -->
+                <section class="courses-section" id="courses">
+                    <div class="section-header">
+                        <h3>Cursos Recomendados</h3>
+                        <a href="#" class="see-all">Ver todos</a>
+                    </div>
+                    
+                    <div class="courses-grid" id="coursesGrid">
+                        <!-- Os cursos serão carregados via JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
