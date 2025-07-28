@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Opportunity+</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Opportunity<span>+</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Entrar</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-card">
+                <h2>Crie sua conta</h2>
+                <p>Junte-se a nossa comunidade e acesse oportunidades exclusivas.</p>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" minlength="6" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Idade</label>
+                        <input type="number" id="age" name="age" min="14" max="30" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city">Cidade</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Áreas de Interesse</label>
+                        <div class="interests-grid">
+                            <label class="interest-option">
+                                <input type="checkbox" name="interests" value="tecnologia"> Tecnologia
+                            </label>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interests" value="saude"> Saúde
+                            </label>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interests" value="educacao"> Educação
+                            </label>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interests" value="administracao"> Administração
+                            </label>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interests" value="design"> Design
+                            </label>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interests" value="engenharia"> Engenharia
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="receiveOpportunities" name="receiveOpportunities" checked>
+                        <label for="receiveOpportunities">Quero receber oportunidades por e-mail</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Criar Conta</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const age = document.getElementById('age').value;
+            const city = document.getElementById('city').value;
+            
+            // Get selected interests
+            const interestCheckboxes = document.querySelectorAll('input[name="interests"]:checked');
+            const interests = Array.from(interestCheckboxes).map(cb => cb.value);
+            
+            // Get receive opportunities preference
+            const receiveOpportunities = document.getElementById('receiveOpportunities').checked;
+            
+            // Create user object
+            const user = {
+                name,
+                email,
+                password,
+                age,
+                city,
+                interests,
+                receiveOpportunities,
+                points: 0,
+                joined: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            UserStorage.setUser(user);
+            
+            // Show success message
+            alert('Cadastro realizado com sucesso! Redirecionando para o dashboard...');
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
