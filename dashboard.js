@@ -501,3 +501,31 @@ function showResults() {
     document.getElementById('progressPercentage').textContent = `${progressPercentage}%`;
     document.getElementById('progressFill').style.width = `${progressPercentage}%`;
 }
+// Navegação entre seções
+document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove a classe active de todos os itens
+        document.querySelectorAll('.sidebar-nav li').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Adiciona a classe active ao item clicado
+        this.parentElement.classList.add('active');
+        
+        // Oculta todas as seções
+        document.querySelectorAll('.content-wrapper > section').forEach(section => {
+            section.style.display = 'none';
+        });
+        
+        // Mostra a seção correspondente
+        const sectionId = this.getAttribute('href').substring(1);
+        if (sectionId) {
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    });
+});
+
+// Mostra o dashboard por padrão
+document.querySelector('.sidebar-nav li.active a').click();
