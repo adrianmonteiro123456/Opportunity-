@@ -529,3 +529,21 @@ document.querySelectorAll('.sidebar-nav a').forEach(link => {
 
 // Mostra o dashboard por padrão
 document.querySelector('.sidebar-nav li.active a').click();
+// Menu mobile
+const mobileMenuBtn = document.createElement('button');
+mobileMenuBtn.className = 'mobile-menu-btn';
+mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+document.body.appendChild(mobileMenuBtn);
+
+mobileMenuBtn.addEventListener('click', function() {
+    document.querySelector('.sidebar').classList.toggle('active');
+});
+
+// Fecha o menu ao clicar em um item
+document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', function() {
+        if (window.innerWidth < 768) {
+            document.querySelector('.sidebar').classList.remove('active');
+        }
+    });
+});
