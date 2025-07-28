@@ -188,3 +188,75 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// Adicionar ao dashboard.js
+document.getElementById('resumeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const user = UserStorage.getUser();
+    const objective = document.getElementById('objective').value;
+    const education = document.getElementById('education').value;
+    const experience = document.getElementById('experience').value;
+    const skills = document.getElementById('skills').value;
+    const languages = document.getElementById('languages').value;
+    
+    // Gera o HTML do currículo
+    const resumeHTML = `
+        <div class="resume-template">
+            <div class="resume-header">
+                <h2>${user.name}</h2>
+                <p>${user.age} anos | ${user.city}</p>
+                <p>${user.email}</p>
+            </div>
+            
+            ${objective ? `
+            <div class="resume-section">
+                <h3>Objetivo</h3>
+                <p>${objective.replace(/\n/g, '<br>')}</p>
+            </div>
+            ` : ''}
+            
+            ${education ? `
+            <div class="resume-section">
+                <h3>Formação Acadêmica</h3>
+                <div class="resume-item">
+                    ${education.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+            ` : ''}
+            
+            ${experience ? `
+            <div class="resume-section">
+                <h3>Experiência Profissional</h3>
+                <div class="resume-item">
+                    ${experience.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+            ` : ''}
+            
+            ${skills ? `
+            <div class="resume-section">
+                <h3>Habilidades</h3>
+                <div class="skills-list">
+                    ${skills.split(',').map(skill => `
+                        <span class="skill-tag">${skill.trim()}</span>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            ${languages ? `
+            <div class="resume-section">
+                <h3>Idiomas</h3>
+                <p>${languages.replace(/\n/g, '<br>')}</p>
+            </div>
+            ` : ''}
+        </div>
+    `;
+    
+    document.getElementById('resumeOutput').innerHTML = resumeHTML;
+    document.getElementById('exportResume').disabled = false;
+});
+
+document.getElementById('exportResume').addEventListener('click', function() {
+    alert('Para exportar para PDF, você pode incluir a biblioteca html2pdf.js\n\nExemplo:\n\nhtml2pdf().from(resumeOutput).save("meu-curriculo.pdf");');
+});
