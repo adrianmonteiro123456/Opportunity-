@@ -214,3 +214,39 @@
         </div>
     </div>
 </section>
+<!-- Adicionar esta seção no content-wrapper -->
+<section class="quiz-section" id="quiz" style="display: none;">
+    <div class="section-header">
+        <h3>Quiz de Carreira</h3>
+        <p>Responda as perguntas e descubra qual área combina mais com você!</p>
+    </div>
+    
+    <div class="quiz-container" id="quizContainer">
+        <div class="quiz-intro" id="quizIntro">
+            <p>Este quiz contém 5 perguntas simples que vão ajudar a identificar áreas profissionais que combinam com seu perfil.</p>
+            <button id="startQuiz" class="btn btn-primary">Começar Quiz</button>
+        </div>
+        
+        <div class="quiz-questions" id="quizQuestions" style="display: none;">
+            <div class="quiz-progress">
+                Pergunta <span id="currentQuestion">1</span> de <span id="totalQuestions">5</span>
+            </div>
+            
+            <h4 id="questionText"></h4>
+            
+            <div class="quiz-options" id="quizOptions">
+                <!-- As opções serão inseridas aqui via JavaScript -->
+            </div>
+            
+            <button id="nextQuestion" class="btn btn-primary" style="display: none;">Próxima Pergunta</button>
+        </div>
+        
+        <div class="quiz-result" id="quizResult" style="display: none;">
+            <h4>Seu resultado:</h4>
+            <div class="result-card" id="resultCard">
+                <!-- O resultado será inserido aqui -->
+            </div>
+            <button id="retakeQuiz" class="btn btn-outline">Refazer Quiz</button>
+        </div>
+    </div>
+</section>
