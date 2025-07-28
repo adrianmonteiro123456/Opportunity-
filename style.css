@@ -223,3 +223,88 @@ nav ul li a.active {
         display: none;
     }
 }
+.quiz-container {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-intro {
+    text-align: center;
+    padding: 20px;
+}
+
+.quiz-intro p {
+    margin-bottom: 30px;
+}
+
+.quiz-progress {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.quiz-questions h4 {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.quiz-option {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    background-color: rgba(0, 94, 255, 0.05);
+    border-color: var(--primary-color);
+}
+
+.quiz-option.selected {
+    background-color: rgba(0, 94, 255, 0.1);
+    border-color: var(--primary-color);
+    font-weight: 500;
+}
+
+.quiz-result {
+    text-align: center;
+    padding: 20px;
+}
+
+.result-card {
+    background-color: rgba(0, 94, 255, 0.05);
+    border-left: 4px solid var(--primary-color);
+    padding: 25px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.result-card h5 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.result-card p {
+    margin-bottom: 15px;
+}
+
+.result-card ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.result-card ul li {
+    margin-bottom: 8px;
+}
