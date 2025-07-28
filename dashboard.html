@@ -164,3 +164,53 @@
     <script src="js/dashboard.js"></script>
 </body>
 </html>
+<!-- Adicionar esta seção no content-wrapper -->
+<section class="resume-section" id="resume" style="display: none;">
+    <div class="section-header">
+        <h3>Meu Currículo</h3>
+    </div>
+    
+    <div class="resume-builder">
+        <div class="resume-form">
+            <h4>Preencha seus dados</h4>
+            <form id="resumeForm">
+                <div class="form-group">
+                    <label>Objetivo Profissional</label>
+                    <textarea id="objective" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Formação Acadêmica</label>
+                    <textarea id="education" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Experiência Profissional</label>
+                    <textarea id="experience" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Habilidades</label>
+                    <textarea id="skills" rows="3" placeholder="Ex: HTML, CSS, JavaScript, Pacote Office"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Idiomas</label>
+                    <textarea id="languages" rows="2" placeholder="Ex: Inglês intermediário"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Gerar Currículo</button>
+            </form>
+        </div>
+        
+        <div class="resume-preview">
+            <h4>Pré-visualização</h4>
+            <div class="resume-output" id="resumeOutput">
+                <!-- O currículo será gerado aqui -->
+            </div>
+            <button id="exportResume" class="btn btn-outline" disabled>
+                <i class="fas fa-download"></i> Exportar PDF
+            </button>
+        </div>
+    </div>
+</section>
