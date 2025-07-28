@@ -260,3 +260,244 @@ document.getElementById('resumeForm').addEventListener('submit', function(e) {
 document.getElementById('exportResume').addEventListener('click', function() {
     alert('Para exportar para PDF, você pode incluir a biblioteca html2pdf.js\n\nExemplo:\n\nhtml2pdf().from(resumeOutput).save("meu-curriculo.pdf");');
 });
+// Adicionar ao dashboard.js
+const quizQuestions = [
+    {
+        question: "O que você mais gosta de fazer no seu tempo livre?",
+        options: [
+            { text: "Resolver problemas e quebra-cabeças", area: "tecnologia", points: 3 },
+            { text: "Ajudar e cuidar de outras pessoas", area: "saude", points: 3 },
+            { text: "Ler e estudar sobre diversos assuntos", area: "educacao", points: 3 },
+            { text: "Organizar e planejar atividades", area: "administracao", points: 3 }
+        ]
+    },
+    {
+        question: "Qual dessas matérias você mais gostava na escola?",
+        options: [
+            { text: "Matemática ou Ciências", area: "tecnologia", points: 2 },
+            { text: "Biologia ou Química", area: "saude", points: 2 },
+            { text: "Português ou História", area: "educacao", points: 2 },
+            { text: "Administração ou Economia", area: "administracao", points: 2 }
+        ]
+    },
+    {
+        question: "Como você descreveria sua personalidade?",
+        options: [
+            { text: "Analítico e lógico", area: "tecnologia", points: 1 },
+            { text: "Compassivo e cuidadoso", area: "saude", points: 1 },
+            { text: "Comunicativo e curioso", area: "educacao", points: 1 },
+            { text: "Organizado e prático", area: "administracao", points: 1 }
+        ]
+    },
+    {
+        question: "Qual ambiente de trabalho você prefere?",
+        options: [
+            { text: "Dinâmico e inovador", area: "tecnologia", points: 2 },
+            { text: "Onde possa ajudar pessoas diretamente", area: "saude", points: 2 },
+            { text: "Que permita compartilhar conhecimento", area: "educacao", points: 2 },
+            { text: "Estruturado e com processos definidos", area: "administracao", points: 2 }
+        ]
+    },
+    {
+        question: "Qual dessas habilidades você considera sua maior força?",
+        options: [
+            { text: "Raciocínio lógico e resolução de problemas", area: "tecnologia", points: 2 },
+            { text: "Empatia e trabalho em equipe", area: "saude", points: 2 },
+            { text: "Comunicação e didática", area: "educacao", points: 2 },
+            { text: "Organização e planejamento", area: "administracao", points: 2 }
+        ]
+    }
+];
+
+const quizResults = {
+    tecnologia: {
+        title: "Você combina com a área de Tecnologia!",
+        description: "Seu perfil analítico e interesse por resolver problemas indicam que você pode se dar muito bem em carreiras como:",
+        careers: [
+            "Desenvolvedor de Software",
+            "Analista de Dados",
+            "Especialista em Cybersecurity",
+            "Engenheiro de Computação"
+        ],
+        tips: [
+            "Faça cursos de programação e lógica",
+            "Participe de hackathons e eventos de tecnologia",
+            "Desenvolva projetos pessoais para praticar"
+        ]
+    },
+    saude: {
+        title: "Você combina com a área da Saúde!",
+        description: "Sua personalidade compassiva e interesse em ajudar os outros indicam que você pode se destacar em profissões como:",
+        careers: [
+            "Enfermeiro",
+            "Técnico em Enfermagem",
+            "Fisioterapeuta",
+            "Técnico em Farmácia"
+        ],
+        tips: [
+            "Procure cursos técnicos na área da saúde",
+            "Faça trabalho voluntário em hospitais ou postos de saúde",
+            "Desenvolva sua capacidade de trabalhar em equipe"
+        ]
+    },
+    educacao: {
+        title: "Você combina com a área de Educação!",
+        description: "Sua curiosidade e habilidade de comunicação sugerem que você pode ser excelente em carreiras como:",
+        careers: [
+            "Professor",
+            "Instrutor de Cursos Profissionalizantes",
+            "Educador Social",
+            "Tutor Particular"
+        ],
+        tips: [
+            "Desenvolva suas habilidades de oratória",
+            "Faça cursos de pedagogia ou metodologias de ensino",
+            "Pratique explicando conceitos para outras pessoas"
+        ]
+    },
+    administracao: {
+        title: "Você combina com a área Administrativa!",
+        description: "Sua organização e pensamento prático indicam que você pode se sair muito bem em funções como:",
+        careers: [
+            "Assistente Administrativo",
+            "Gerente de Operações",
+            "Analista de Processos",
+            "Empreendedor"
+        ],
+        tips: [
+            "Aprenda sobre gestão e processos",
+            "Faça cursos de ferramentas de escritório",
+            "Desenvolva seu networking profissional"
+        ]
+    }
+};
+
+let currentQuestionIndex = 0;
+let userAnswers = [];
+let areaScores = {
+    tecnologia: 0,
+    saude: 0,
+    educacao: 0,
+    administracao: 0
+};
+
+document.getElementById('startQuiz').addEventListener('click', function() {
+    document.getElementById('quizIntro').style.display = 'none';
+    document.getElementById('quizQuestions').style.display = 'block';
+    showQuestion(currentQuestionIndex);
+});
+
+document.getElementById('nextQuestion').addEventListener('click', function() {
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < quizQuestions.length) {
+        showQuestion(currentQuestionIndex);
+        document.getElementById('nextQuestion').style.display = 'none';
+    } else {
+        showResults();
+    }
+});
+
+document.getElementById('retakeQuiz').addEventListener('click', function() {
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    areaScores = {
+        tecnologia: 0,
+        saude: 0,
+        educacao: 0,
+        administracao: 0
+    };
+    
+    document.getElementById('quizResult').style.display = 'none';
+    document.getElementById('quizQuestions').style.display = 'block';
+    showQuestion(currentQuestionIndex);
+});
+
+function showQuestion(index) {
+    const question = quizQuestions[index];
+    document.getElementById('currentQuestion').textContent = index + 1;
+    document.getElementById('questionText').textContent = question.question;
+    
+    const optionsContainer = document.getElementById('quizOptions');
+    optionsContainer.innerHTML = '';
+    
+    question.options.forEach((option, i) => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'quiz-option';
+        optionElement.textContent = option.text;
+        optionElement.dataset.area = option.area;
+        optionElement.dataset.points = option.points;
+        
+        optionElement.addEventListener('click', function() {
+            // Remove seleção anterior
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Seleciona a opção atual
+            this.classList.add('selected');
+            
+            // Habilita o botão de próxima pergunta
+            document.getElementById('nextQuestion').style.display = 'inline-block';
+            
+            // Armazena a resposta
+            userAnswers[index] = {
+                question: question.question,
+                answer: option.text,
+                area: option.area,
+                points: option.points
+            };
+        });
+        
+        optionsContainer.appendChild(optionElement);
+    });
+}
+
+function showResults() {
+    // Calcula os pontos por área
+    userAnswers.forEach(answer => {
+        areaScores[answer.area] += answer.points;
+    });
+    
+    // Encontra a área com maior pontuação
+    let topArea = 'tecnologia';
+    let topScore = areaScores.tecnologia;
+    
+    for (const area in areaScores) {
+        if (areaScores[area] > topScore) {
+            topArea = area;
+            topScore = areaScores[area];
+        }
+    }
+    
+    // Exibe o resultado
+    const result = quizResults[topArea];
+    const resultCard = document.getElementById('resultCard');
+    
+    resultCard.innerHTML = `
+        <h5>${result.title}</h5>
+        <p>${result.description}</p>
+        <ul>
+            ${result.careers.map(career => `<li>${career}</li>`).join('')}
+        </ul>
+        <p><strong>Dicas para começar:</strong></p>
+        <ul>
+            ${result.tips.map(tip => `<li>${tip}</li>`).join('')}
+        </ul>
+    `;
+    
+    document.getElementById('quizQuestions').style.display = 'none';
+    document.getElementById('quizResult').style.display = 'block';
+    
+    // Atualiza pontos do usuário (gamificação)
+    const user = UserStorage.getUser();
+    user.points = (user.points || 0) + 10; // 10 pontos por completar o quiz
+    UserStorage.updateUser({ points: user.points });
+    
+    // Atualiza UI
+    document.getElementById('userPoints').textContent = `${user.points} pontos`;
+    
+    const progressPercentage = Math.min(Math.floor(user.points / 10), 100);
+    document.getElementById('progressPercentage').textContent = `${progressPercentage}%`;
+    document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+}
